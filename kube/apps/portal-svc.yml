@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: portal-svc
+  labels:
+    app: portal-svc
+###############  These are only used by configmaps ###############
+#    cis.f5.com/as3-tenant: Nodeport
+#    cis.f5.com/as3-app: mySCTP
+#    cis.f5.com/as3-pool: sctp-pool
+###############  These are only used by configmaps ###############
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: portal-app

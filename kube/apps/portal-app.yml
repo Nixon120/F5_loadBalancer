@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-deployment
+spec:
+  selector:
+    matchLabels:
+      app: portal-app
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: portal-app
+    spec:
+      containers:
+      - name: portal-app
+        image: mendhak/http-https-echo
+        ports:
+          - containerPort: 8080

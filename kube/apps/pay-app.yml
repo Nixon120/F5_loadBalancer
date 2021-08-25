@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pay-deployment
+spec:
+  selector:
+    matchLabels:
+      app: pay-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pay-app
+    spec:
+      containers:
+      - name: pay-app
+        image: mendhak/http-https-echo
+        ports:
+          - containerPort: 8080
