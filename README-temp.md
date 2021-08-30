@@ -1,7 +1,7 @@
 
 # F5 CIS with EKS
 
-> Demo deployment of CIS (in High Availability configuration) alongside EKS with the use of Terrafrom
+Demo deployment of CIS (in High Availability configuration) alongside EKS with the use of Terrafrom
 
 
 ---
@@ -9,10 +9,10 @@
 ## Table of Contents
 
 
-- [F5 CIS with EKS](#f5-cis-with-eks)
-  - [Introduction](#introduction)
-  - [Installation](#installation)
-  - [Support](#support)
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Support](#support)
 
 ## Introduction
 
@@ -28,6 +28,7 @@ Once the infrastrucutre is complete you
  author, validate and maintain as code (vs. bigip.conf files)
 * renders secre
  we have 2 
+
 
 ## Installation
 
@@ -64,9 +65,4 @@ $ bower install
 
 ## Support
 
-Reach out to me at one of the following places!
-
-- Website at <a href="http://fvcproductions.com" target="_blank">`fvcproductions.com`</a>
-- Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>
-- Insert more social links here.
 
