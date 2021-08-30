@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pay-svc
+  labels:
+    app: pay-svc
+###############  These are only used by configmaps ###############
+    cis.f5.com/as3-tenant: Nodeport
+    cis.f5.com/as3-app: mySCTP
+    cis.f5.com/as3-pool: sctp-pool
+###############  These are only used by configmaps ###############
+spec:
+#  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+#    targetPort: 80
+  selector:
+    app: pay-app

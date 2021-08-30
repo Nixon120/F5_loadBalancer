@@ -1,0 +1,11 @@
+aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name)
+kubectl apply -f kube/apps/pay-app.yml; kubectl apply -f kube/apps/pay-svc.yml; kubectl apply -f kube/apps/portal-app.yml; kubectl apply -f kube/apps/portal-svc.yml; 
+kubectl apply -f kube/controllers/cis-role.yml; kubectl apply -f kube/controllers/cis-crd.yml -n kube-system
+kubectl create secret generic bigip-login -n kube-system --from-literal=username=admin --from-literal=password=PUT-THE-PASSWORD-PLEASE
+kubectl apply -f kube/controllers/cis-ctlr-cluster-crd-1.yml
+kubectl apply -f kube/controllers/cis-ctlr-cluster-crd-2.yml
+kubectl apply -f kube/controllers/cis-ctlr-cluster-cfgmap-1.yml
+kubectl apply -f kube/controllers/cis-ctlr-cluster-cfgmap-2.yml
+
+kubectl apply -f kube/crd/layer7.yml
+kubectl apply -f kube/cfg/sctp.yml
