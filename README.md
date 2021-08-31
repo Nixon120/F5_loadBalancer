@@ -1,5 +1,5 @@
 
-# F5 CIS with EKS
+# F5 CIS with EKS. (Work in progress)
 
 Providing Ingress Services for EKS with F5 CIS (in HA configuration) 
 
