@@ -4,7 +4,6 @@
 Providing Ingress Services for EKS with F5 CIS (in HA configuration) 
 
 
----
 
 ## Table of Contents
 
