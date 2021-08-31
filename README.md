@@ -23,6 +23,8 @@ With the use of a Terraform script we will deploy the following infrastructure i
 * EKS with 2 nodes
 * 2xBIGIP devices in HA configuration (PAYG License)
 
+[![INSERT YOUR GRAPHIC HERE](https://github.com/skenderidis/f5-eks-demo/blob/main/_images/F5%20-%20EKS.png?raw=true)]()
+
 In the second demo the clients will be connecting through another VPC and BIGIP will NOT change the source IP address. To achieve symmetric traffic back and forth EKS, we have configured a route on the EKS subnet to send the client's VPC traffic through the BIGIP devices.  
 
 The use-cases that will be deployed for this demo are:
