@@ -31,7 +31,7 @@ With the use of a Terraform script we will deploy the following infrastructure i
 * EKS with 2 nodes
 * 2xBIGIP devices in HA configuration (PAYG License)
 
-[![Network Diagram](https://github.com/skenderidis/f5-eks-demo/blob/main/_images/F5-EKS-demo2.png?raw=true)]()
+[![Network Diagram](https://github.com/skenderidis/f5-eks-demo/blob/main/images/F5-EKS-demo2.png?raw=true)]()
 
 
 > In both demos CFE and DO will be deployed with `run-time init` during the terraform deployment of the F5 devices.
