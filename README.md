@@ -31,10 +31,10 @@ With the use of a Terraform script we will deploy the following infrastructure i
 In the second demo the clients will be connecting through another VPC and BIGIP will NOT change the source IP address. To achieve symmetric traffic between F5 and EKS, we have configured a route on the EKS subnet to send the client's VPC traffic through the BIGIP devices.<br>
 With the use of a Terraform script we will deploy the following infrastructure in AWS:
 * Main VPC with 6 subnets
+* Client VPC with 1 subnet
 * EKS with 2 nodes
 * 2xBIGIP devices in HA configuration (PAYG License)
-* Clients VPC devices in HA configuration (PAYG License)
-* Test PC on clients VPC
+* Test PC on client VPC  *********  Not Yet Implemented    *************
 * Routes, ENIs, EIPs, Security Groups, IGW, NAT Gateways, etc
 * Initial configuration of F5 devices with DO and CFE 
 
@@ -94,22 +94,9 @@ terraform apply
 Most of the variables can be found on variables.tf under Demo-1 or Demo-2 directories
 
 ```shell
-ariable "region" {
+variable "region" {
   default     = "eu-central-1"
   description = "AWS region"
-}
-
-
-variable "ec2_key_name" {
-  description = "AWS EC2 Key name for SSH access"
-  type        = string
-  default     = "F5-SSH-key"
-}
-
-variable "prefix" {
-  description = "Prefix for resources created by this module"
-  type        = string
-  default     = "tf-aws-bigip"
 }
 
 variable f5_username {
@@ -133,9 +120,7 @@ variable ec2_instance_type {
   description = "AWS EC2 instance type"
   type        = string
   default     = "m5.xlarge"
-  #default     = "c4.xlarge"
 }
-
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 # always point to a specific version in order to avoid inadvertent configuration inconsistency
@@ -184,6 +169,112 @@ variable INIT_URL {
 }
 
 ```
+
+
+### Declerative Onboarding (DO)
+
+DO declaration will run during the `runtime init` process. The Declaration can be found on the folder modules => bigip => f5_onboard.tmpl
+
+
+```shell
+        schemaVersion: 1.0.0
+        class: Device
+        async: true
+        label: Onboard BIG-IP
+        Common:
+          class: Tenant
+          mySystem:
+            class: System
+            hostname: ${hostname}
+          myDns:
+            class: DNS
+            nameServers:
+              - 8.8.8.8
+              - 169.254.169.253
+            search:
+              - f5.com
+          admin:
+            class: User
+            userType: regular
+            password: ${bigip_password}
+            shell: bash
+          myNtp:
+            class: NTP
+            servers:
+              - 169.254.169.123
+            timezone: UTC
+          external:
+            class: VLAN
+            tag: 4093
+            mtu: 1500
+            interfaces:
+              - name: '1.1'
+                tagged: false
+            cmpHash: dst-ip
+          external-selfip:
+            class: SelfIp
+            address: ${self-ip-ext}/24
+            vlan: external
+            allowService: none
+            trafficGroup: traffic-group-local-only
+          default:
+            class: Route
+            gw: ${gateway}
+            network: default
+            mtu: 1500
+          servers-route:
+            class: Route
+            gw: ${gateway_servers}
+            network: 10.0.0.0/16
+            mtu: 1500
+          internal:
+            class: VLAN
+            tag: 4094
+            mtu: 1500
+            interfaces:
+              - name: '1.2'
+                tagged: false
+            cmpHash: dst-ip
+          internal-selfip:
+            class: SelfIp
+            address: ${self-ip-int}/24
+            vlan: internal
+            allowService: default
+            trafficGroup: traffic-group-local-only
+          configsync:
+            class: ConfigSync
+            configsyncIp: "/Common/internal-selfip/address"
+          failoverAddress:
+            class: FailoverUnicast
+            address: "/Common/internal-selfip/address"
+          failoverGroup:
+            class: DeviceGroup
+            type: sync-failover
+            members:
+            - ${self-ip-int}
+            - ${ha_remote_f5}
+            owner: ${ha_primary_f5}
+            autoSync: false
+            saveOnAutoSync: false
+            networkFailover: true
+            fullLoadOnSync: false
+            asmSync: false
+          trust:
+            class: DeviceTrust
+            localUsername: admin
+            localPassword: ${bigip_password}
+            remoteHost: ${ha_remote_f5}
+            remoteUsername: admin
+            remotePassword: ${bigip_password}
+            
+```
+
+
+### Variables
+
+Most of the variables can be found on variables.tf under Demo-1 or Demo-2 directories
+
+
 
 
 The most common variables that you might want to chage are:
