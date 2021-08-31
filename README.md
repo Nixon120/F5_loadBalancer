@@ -94,7 +94,7 @@ terraform apply
 
 Most of the variables can be found on variables.tf under Demo-1 or Demo-2 directories
 
-``shell
+```shell
 ariable "region" {
   default     = "eu-central-1"
   description = "AWS region"
@@ -184,7 +184,7 @@ variable INIT_URL {
   default     = "https://cdn.f5.com/product/cloudsolutions/f5-bigip-runtime-init/v1.2.1/dist/f5-bigip-runtime-init-1.2.1-1.gz.run"
 }
 
-``
+```
 
 
 The most common variables that you might want to chage are:
