@@ -16,7 +16,7 @@ Demo deployment of CIS (in HA configuration) alongside EKS
 
 ## Introduction
 
-This repository is split into two demos that show different use cases on how CIS can be used to publish resources that are deployed in EKS.
+This repository is split into two demos that show different use cases on how CIS can be used to publish resources that are deployed in EKS.<br>
 In first demo the clients will be connecting through the internet to the public IPs that are created on the BIGIP and BIGIP will SNAT the client IP when it sends the connection back to EKS.
 With the use of a Terraform script we will deploy the following infrastructure in AWS:
 * VPC with 6 subnets
