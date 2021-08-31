@@ -16,12 +16,25 @@ Demo deployment of CIS (in HA configuration) alongside EKS
 
 ## Introduction
 
-This repository is split into two different demo to show certain use-cases on how CIS can be used to publish resources that are deployed in EKS.
-The first Demo is 
+This repository is split into two demos that show different use cases on how CIS can be used to publish resources that are deployed in EKS.
+In first demo the clients will be connecting through the internet to the public IPs that are created on the BIGIP and BIGIP will SNAT the client IP when it sends the connection back to EKS.
 With the use of a Terraform script we will deploy the following infrastructure in AWS:
 * VPC with 6 subnets
 * EKS with 2 nodes
 * 2xBIGIP devices in HA configuration (PAYG License)
+
+In the second demo the clients will be connecting through another VPC and BIGIP will NOT change the source IP address. To achieve symmetric traffic back and forth EKS, we have configured a route on the EKS subnet to send the client's VPC traffic through the BIGIP devices.  
+
+The use-cases that will be deployed for this demo are:
+* Publish an web appplication that runs on EKS with the use of Virtual Server CRDs (Layer 7)
+* Publish a TCP appplication that runs on EKS with the use of Transport Server CRDs (Layer 4)
+* Publish a UDP appplication that runs on EKS with the use of Transport Server CRDs (Layer 4)
+
+
+* EKS with 2 nodes
+
+
+
 
 > CFE and DO will be deployed with  `run-time init` during the terraform deployment of the F5 devices.
 
