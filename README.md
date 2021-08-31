@@ -52,6 +52,7 @@ The full list of use-cases can be found under kube/ingress. These are a combinat
 
 ## Pre-requisistes
 
+- Terraform installed
 - For the demo we are using a PAYG License of BIGIP 200 Best Bundle. In order for Terraform to able to deploy this instance you would need to "Accept Terms" on the AWS Marketplace. 
 Go to "AWS Marketplace subscriptions" page and select “Discover products” from the left column. Then type “BIGIP 200Mbps Best” in the search box. Select the BIGIP 200Mbps => “Continue to Subscribe” => “Accept Terms”
 > This might take some time to be approved
@@ -60,17 +61,11 @@ Go to "AWS Marketplace subscriptions" page and select “Discover products” fr
 
 ## Installation
 
-- All the `code` required to get started
-- Images of what it should look like
-
-
-
-
-Once the infrastrucutre is deployed you 
-* Declerative Onboarding 
- author, validate and maintain as code (vs. bigip.conf files)
-* renders secre
- we have 2 
+- Use git pull to make a local copy of the Terraform code.
+```shell
+git clone https://github.com/dudesweet/f5_terraform.git
+```
+ 
 
 
 ## Installation
