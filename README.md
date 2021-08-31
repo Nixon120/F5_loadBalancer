@@ -173,7 +173,7 @@ variable INIT_URL {
 
 ### Declerative Onboarding (DO)
 
-DO declaration will run during the `runtime init` process. The Declaration can be found on the folder modules => bigip => f5_onboard.tmpl
+DO declaration will run during the `runtime init` process. The Declaration can be found on the folder `modules => bigip => f5_onboard.tmpl`
 
 
 ```shell
@@ -266,7 +266,7 @@ DO declaration will run during the `runtime init` process. The Declaration can b
             remoteHost: ${ha_remote_f5}
             remoteUsername: admin
             remotePassword: ${bigip_password}
-            
+
 ```
 
 
