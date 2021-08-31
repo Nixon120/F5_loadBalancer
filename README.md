@@ -1,7 +1,7 @@
 
 # F5 CIS with EKS
 
-Demo deployment of CIS (in HA configuration) alongside EKS 
+Providing Ingress Services for EKS with F5 CIS (in HA configuration) 
 
 
 ---
@@ -16,7 +16,7 @@ Demo deployment of CIS (in HA configuration) alongside EKS
 
 ## Introduction
 
-This repository is split into two demos that show different use cases on how CIS can be used to publish resources that are deployed in EKS.<br>
+This repository is split into two demos that show different use cases on how CIS can be used to publish ingress services for EKS.<br>
 In first demo the clients will be connecting through the internet to the public IPs that are created on the BIGIP and BIGIP will SNAT the client IP when it sends the connection back to EKS.<br>
 With the use of a Terraform script we will deploy the following infrastructure in AWS:
 * Main VPC with 6 subnets
@@ -41,31 +41,51 @@ With the use of a Terraform script we will deploy the following infrastructure i
 
 > In both demos CFE and DO will be deployed with `run-time init` during the terraform deployment of the F5 devices.
 
-Some of the use-cases that will be deployed for this demo are:
-* Publish an web appplication that runs on EKS with the use of Virtual Server CRDs (Layer 7)
-* Publish a TCP appplication that runs on EKS with the use of Transport Server CRDs (Layer 4)
-* Publish a UDP appplication that runs on EKS with the use of Transport Server CRDs (Layer 4)
-* Publish a STCP appplication that runs on EKS with the use of Transport Server CRDs (Layer 4)
+Some of the ingress services that will be deployed during this demo are:
+* Virtual Server CRDs (Layer 7) to publish an web appplication that runs on EKS
+* Transport Server CRDs (Layer 4) to publish a TCP appplication that runs on EKS
+* Transport Server CRDs (Layer 4) to publish a UDP appplication that runs on EKS
+* ConfigMap tp publish a STCP appplication that runs on EKS.
 
-The full list of use-cases can be found under kube/ingress. These are a combination of Ingress/CRDs/ConfigMaps that CIS supports
+The full list of ingress serfvices can be found on the directory Demo-*/kube/ingress.
 
 
 ## Pre-requisistes
 
 - Terraform installed
+- AWS credentials for programmatic access
 - For the demo we are using a PAYG License of BIGIP 200 Best Bundle. In order for Terraform to able to deploy this instance you would need to "Accept Terms" on the AWS Marketplace. 
 Go to "AWS Marketplace subscriptions" page and select “Discover products” from the left column. Then type “BIGIP 200Mbps Best” in the search box. Select the BIGIP 200Mbps => “Continue to Subscribe” => “Accept Terms”
 > This might take some time to be approved
 
 
-
 ## Installation
 
-- Use git pull to make a local copy of the Terraform code.
+Use git pull to make a local copy of the Terraform code.
 ```shell
 git clone https://github.com/dudesweet/f5_terraform.git
 ```
- 
+
+Navigate to directory "Demo-1" or "Demo-2" depending on your requirements. This is example we will navigate to Demo-1 directory
+```shell
+cd f5-eks-demo/Demo-1
+```
+Run the following command to initialize Terraform
+```shell
+terraform init 
+```
+
+Run the command `terraform plan` to see the changes that are going to be made.
+```shell
+terraform plan 
+```
+
+To build the Lab infrastructure run the command `terraform apply`.
+```shell
+terraform apply
+```
+> "terraform apply" will prompt you with a yes/no to confirm if you want to go ahead and make the changes.
+
 
 
 ## Installation
