@@ -12,6 +12,8 @@ Providing Ingress Services for EKS with F5 CIS (in HA configuration)
 
 - [Introduction](#introduction)
 - [Pre-requisites](#pre-requisites)
+- [Installation](#installation)
+- [Variables](#variables)
 - [Support](#support)
 
 ## Introduction
@@ -66,7 +68,7 @@ Use git pull to make a local copy of the Terraform code.
 git clone https://github.com/dudesweet/f5_terraform.git
 ```
 
-Navigate to directory "Demo-1" or "Demo-2" depending on your requirements. This is example we will navigate to Demo-1 directory
+Navigate to directory "Demo-1" or "Demo-2" depending on your requirements. For this example we will navigate to Demo-1 directory
 ```shell
 cd f5-eks-demo/Demo-1
 ```
@@ -88,38 +90,29 @@ terraform apply
 
 
 
-## Installation
+### Variables
 
-- All the `code` required to get started
-- Images of what it should look like
+Most of the variables can be found on variables.tf under Demo-1 or Demo-2 directories
 
-### Clone
+`shell
+test
+`
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
 
-### Setup
+The most common variables that you might want to chage are:
 
-- If you want more syntax highlighting, format your code like this:
 
-> update and install this package first
+These BIG-IP versions are supported in these Terraform versions.
 
-```shell
-$ brew update
-$ brew install fvcproductions
-```
+| Variables       | Default |	Terraform 0.13  |	Terraform 0.12  | Terraform 0.11  |
+|-----------------|---------------|-----------------|-----------------|-----------------|
+| BIG-IP 16.x	    |      X        |       X         |       X         |      X          |
+| BIG-IP 15.x	    |      X        |       X         |       X         |      X          |
+| BIG-IP 14.x	    | 	   X        |       X         |       X         |      X          |
+| BIG-IP 12.x	    |      X        |      	X         |       X         |      X          | 
+| BIG-IP 13.x	    |      X        |       X         |       X         |      X          |
 
-> now install npm and bower packages
 
-```shell
-$ npm install
-$ bower install
-```
-
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
-
----
-
-## Features
 
 ## Support
 
