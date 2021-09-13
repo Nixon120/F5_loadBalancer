@@ -64,7 +64,7 @@ Go to "AWS Marketplace subscriptions" page and select “Discover products” fr
 
 Use git pull to make a local copy of the Terraform code.
 ```shell
-git clone https://github.com/dudesweet/f5_terraform.git
+git clone https://github.com/skenderidisf5_terraform.git
 ```
 
 Navigate to directory "Demo-1" or "Demo-2" depending on your requirements. For this example we will navigate to Demo-1 directory
