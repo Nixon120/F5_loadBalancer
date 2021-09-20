@@ -275,23 +275,3 @@ DO declaration will run during the `runtime init` process. The Declaration can b
 Most of the variables can be found on variables.tf under Demo-1 or Demo-2 directories
 
 
-
-
-The most common variables that you might want to chage are:
-
-
-These BIG-IP versions are supported in these Terraform versions.
-
-| Variables       | Default |	Terraform 0.13  |	Terraform 0.12  | Terraform 0.11  |
-|-----------------|---------------|-----------------|-----------------|-----------------|
-| BIG-IP 16.x	    |      X        |       X         |       X         |      X          |
-| BIG-IP 15.x	    |      X        |       X         |       X         |      X          |
-| BIG-IP 14.x	    | 	   X        |       X         |       X         |      X          |
-| BIG-IP 12.x	    |      X        |      	X         |       X         |      X          | 
-| BIG-IP 13.x	    |      X        |       X         |       X         |      X          |
-
-
-
-## Support
-
-
